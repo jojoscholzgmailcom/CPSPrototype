@@ -103,6 +103,7 @@
 
       var script = document.createElement("script");
       script.src = loaderUrl;
+      document.body.appendChild(script);
       /*script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
@@ -117,8 +118,9 @@
       };
       document.body.appendChild(script);*/
     </script>
-    <script src="Build/Result.loader.js">
+    <script>
 	document.getElementById("unity-container").style.visibility = "hidden"
+	script.onload = () => {
       	function start() {
         	document.getElementById("unity-container").style.visibility= "visible";
         	// create new buffer source for playback with an already
@@ -144,6 +146,7 @@
           		alert(message);
         	});
       }
+      };
     </script>
     <button onclick="start()">Start</button>
   </body>
