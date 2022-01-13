@@ -117,7 +117,7 @@
       };
       document.body.appendChild(script);*/
     </script>
-    <script>
+    <script src="/Result.loader.js">
 	document.getElementById("unity-container").style.visibility = "hidden"
       	function start() {
         	document.getElementById("unity-container").style.visibility= "visible";
@@ -133,7 +133,7 @@
           
 	        // play the file
 	        source.start(0);
-		loaderUrl.createUnityInstance(canvas, config, (progress) => {
+		createUnityInstance(canvas, config, (progress) => {
           		progressBarFull.style.width = 100 * progress + "%";
         	}).then((unityInstance) => {
           		loadingBar.style.display = "none";
