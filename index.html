@@ -24,35 +24,6 @@
       </div>
     </div>
     <script>
-	document.getElementById("unity-container").style.visibility = "hidden"
-      	function start() {
-        	document.getElementById("unity-container").style.visibility= "visible";
-        	// create new buffer source for playback with an already
-	        // loaded and decoded empty sound file
-		var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-		var buffer = audioCtx.createBuffer(1, 1, 22050);
-		var source = audioCtx.createBufferSource();
-		source.buffer = buffer;
-          
-	        // connect to output (your speakers)
-	        source.connect(audioCtx.destination);
-          
-	        // play the file
-	        source.start(0);
-		createUnityInstance(canvas, config, (progress) => {
-          		progressBarFull.style.width = 100 * progress + "%";
-        	}).then((unityInstance) => {
-          		loadingBar.style.display = "none";
-          		/*fullscreenButton.onclick = () => {
-            			unityInstance.SetFullscreen(1);
-          		};*/
-        	}).catch((message) => {
-          		alert(message);
-        	});
-      }
-    </script>
-    <button onclick="start()">Start</button>
-    <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -146,5 +117,34 @@
       };
       document.body.appendChild(script);*/
     </script>
+    <script>
+	document.getElementById("unity-container").style.visibility = "hidden"
+      	function start() {
+        	document.getElementById("unity-container").style.visibility= "visible";
+        	// create new buffer source for playback with an already
+	        // loaded and decoded empty sound file
+		var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+		var buffer = audioCtx.createBuffer(1, 1, 22050);
+		var source = audioCtx.createBufferSource();
+		source.buffer = buffer;
+          
+	        // connect to output (your speakers)
+	        source.connect(audioCtx.destination);
+          
+	        // play the file
+	        source.start(0);
+		loaderUrl.createUnityInstance(canvas, config, (progress) => {
+          		progressBarFull.style.width = 100 * progress + "%";
+        	}).then((unityInstance) => {
+          		loadingBar.style.display = "none";
+          		/*fullscreenButton.onclick = () => {
+            			unityInstance.SetFullscreen(1);
+          		};*/
+        	}).catch((message) => {
+          		alert(message);
+        	});
+      }
+    </script>
+    <button onclick="start()">Start</button>
   </body>
 </html>
