@@ -5,12 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>PrototypeCPS</title>
     <link rel="shortcut icon" href="TemplateData/logo.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop" visibility="hidden">
+    <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=478 height=850></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
@@ -105,49 +103,19 @@
 
       var script = document.createElement("script");
       script.src = loaderUrl;
-      document.body.appendChild(script);
-      /*script.onload = () => {
+      script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
           /*fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
-          };
+          };*/
         }).catch((message) => {
           alert(message);
         });
       };
-      document.body.appendChild(script);*/
+      document.body.appendChild(script);
     </script>
-    <script>
-	document.getElementById("unity-container").style.visibility = "hidden"
-      	function startFunctionality() {
-        	document.getElementById("unity-container").style.visibility= "visible";
-        	// create new buffer source for playback with an already
-	        // loaded and decoded empty sound file
-		var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-		var buffer = audioCtx.createBuffer(1, 1, 22050);
-		var source = audioCtx.createBufferSource();
-		source.buffer = buffer;
-          
-	        // connect to output (your speakers)
-	        source.connect(audioCtx.destination);
-          
-	        // play the file
-	        source.start(0);
-		createUnityInstance(canvas, config, (progress) => {
-          		progressBarFull.style.width = 100 * progress + "%";
-        	}).then((unityInstance) => {
-          		loadingBar.style.display = "none";
-          		/*fullscreenButton.onclick = () => {
-            			unityInstance.SetFullscreen(1);
-          		};*/
-        	}).catch((message) => {
-          		alert(message);
-        	});
-      }
-    </script>
-    <button onclick="startFunctionality()">Start</button>
   </body>
 </html>
